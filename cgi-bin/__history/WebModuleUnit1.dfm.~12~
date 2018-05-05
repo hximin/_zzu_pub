@@ -1,0 +1,46 @@
+object WebModule1: TWebModule1
+  OldCreateOrder = False
+  Actions = <
+    item
+      Name = 'DefaultHandler'
+      PathInfo = '/'
+      OnAction = WebModule1DefaultHandlerAction
+    end
+    item
+      Name = 'WebActionItem1'
+      PathInfo = '/test'
+      OnAction = WebModule1WebActionItem1Action
+    end
+    item
+      Name = 'WebActionItem2'
+      PathInfo = '/lookausr'
+      OnAction = lookausr
+    end
+    item
+      Name = 'WebActionItem3'
+      PathInfo = '/addaUsr'
+      OnAction = addaUsr
+    end>
+  Height = 230
+  Width = 415
+  object PageProducer1: TPageProducer
+    Left = 56
+    Top = 40
+  end
+  object ADOConnection1: TADOConnection
+    ConnectionString = 
+      'Provider=SQLOLEDB.1;Password=ZZU0416pub*;Persist Security Info=T' +
+      'rue;User ID=hxm;Initial Catalog=vls3db;Data Source=192.168.66.13' +
+      ',64321'
+    LoginPrompt = False
+    Provider = 'SQLOLEDB.1'
+    Left = 160
+    Top = 24
+  end
+  object ADOQuery1: TADOQuery
+    Connection = ADOConnection1
+    Parameters = <>
+    Left = 240
+    Top = 32
+  end
+end

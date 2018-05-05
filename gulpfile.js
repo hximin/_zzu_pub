@@ -1,41 +1,30 @@
+/**
+ *  Welcome to your gulpfile!
+ *  The gulp tasks are split into several files in the gulp directory
+ *  because putting it all here was too long
+ */
+
+'use strict';
+
+var fs = require('fs');
 var gulp = require('gulp');
-var browserSync = require('browser-sync').create();
-var pkg = require('./package.json');
 
-// Copy third party libraries from /node_modules into /vendor
-gulp.task('vendor', function() {
-
-  // Bootstrap
-  gulp.src([
-      './node_modules/bootstrap/dist/**/*',
-      '!./node_modules/bootstrap/dist/css/bootstrap-grid*',
-      '!./node_modules/bootstrap/dist/css/bootstrap-reboot*'
-    ])
-    .pipe(gulp.dest('./vendor/bootstrap'))
-
-  // jQuery
-  gulp.src([
-      './node_modules/jquery/dist/*',
-      '!./node_modules/jquery/dist/core.js'
-    ])
-    .pipe(gulp.dest('./vendor/jquery'))
-
-})
-
-// Default task
-gulp.task('default', ['vendor']);
-
-// Configure the browserSync task
-gulp.task('browserSync', function() {
-  browserSync.init({
-    server: {
-      baseDir: "./"
-    }
-  });
+/**
+ *  This will load all js or coffee files in the gulp directory
+ *  in order to load all gulp tasks
+ */
+fs.readdirSync('./gulp').filter(function(file) {
+  return (/\.(js|coffee)$/i).test(file);
+}).map(function(file) {
+  require('./gulp/' + file);
 });
 
-// Dev task
-gulp.task('dev', ['browserSync'], function() {
-  gulp.watch('./css/*.css', browserSync.reload);
-  gulp.watch('./*.html', browserSync.reload);
+
+/**
+ *  Default task clean temporaries directories and launch the
+ *  main optimization build task
+ */
+gulp.task('default', ['clean'], function () {
+  gulp.start('build');
 });
+

@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>手语教育平台注册</title>
+
+    <meta name="description" content="Source code generated using layoutit.com">
+    <meta name="author" content="黄喜民">
+    <link href="css/bootstrap.css" rel="stylesheet">
+
+
+  </head>
+  <body ng-app="regApp" ng-controller="regCtrl as ctrl">
+  <div class="container">
+	 <div class="row">
+	 	  <div class="col-md-12">
+      <div class="page-header" style="text-align:center"><h2>用户注册</h2></div>
+    </div>
+      <div class="col-md-12">
+			<div class="row">
+				<div class="col-md-3">
+				</div>
+        <div class="col-md-3" style="text-align: center">
+          <label>已有账号<br><br>请从这里<a href="index.html" class="btn-danger btn-sm">登录</a></label>
+        </div>
+
+        <div class="col-md-3">
+					<form role="form" name="myform" ng-submit="ctrl.submit()">
+						<div class="form-group has-success has-feedback">
+							<label for="userid">
+								用户名
+							</label>
+							<input type="text" class="form-control" name="userid" required="true" ng-minlength="2" ng-maxlength="12" placeholder="请填写用户名，最长12字符" ng-model="ctrl.user.userid">
+              <span class="glyphicon glyphicon-ok form-control-feedback" aria-hidden="true"></span>
+              <span ng-show="myform.userid.$error.required" class="label-warning">必填项</span>　
+              <span ng-show="ctrl.isExist" class="label-warning">该用户名已存在,请选择其他用户名！</span>
+						</div>
+						<div class="form-group">
+							<label for="passwd1">
+								密码
+							</label>
+							<input type="password" class="form-control" required="true" name="passwd1" ng-minlength="4" ng-model="ctrl.user.passwd1">
+              <span ng-show="myform.passwd1.$error.minlength" class="label-warning">密码不能少于4个字符</span>
+						</div>
+            <div class="form-group">
+              <label for="passwd2">
+                确认密码
+              </label>
+              <input type="password" class="form-control" name="passwd2" ng-model="ctrl.user.passwd2">
+              <span class="label-warning" ng-show="ctrl.notSame">密码必须一致</span>
+            </div>
+            <div class="form-group">
+              <label for="nickname">
+                昵称
+              </label>
+              <input type="text" class="form-control" name="nickname" placeholder="请输入昵称" required="true" ng-model="ctrl.user.nickname">
+              <span ng-show="myform.nickname.$error.required" class="label-warning">必填项</span>
+            </div>
+						<div class="form-group">
+							<p class="help-block">
+								帮助文档（help).
+							</p>
+						</div>
+						<div class="checkbox">
+
+							<label>
+								<input type="checkbox">我已看过并同意 <span class="glyphicon glyphicon-user"></span>注册《郑州大学出版社手语教育平台服务使用协议》
+
+							</label>
+						</div>
+						<input type="submit" class="btn" ng-disabled="myform.$invalid" value="注册" >
+
+
+					</form>
+				</div>
+				<div class="col-md-3">
+				</div>
+			</div>
+		</div>
+  </div>
+  </div>
+    <script src="js/jquery2.2.2.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/angular.js"></script>
+    <script src="js/regUser.js"></script>
+  </body>
+</html>
