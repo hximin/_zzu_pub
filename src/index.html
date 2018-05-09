@@ -1,46 +1,107 @@
 <!doctype html>
-<html ng-app="pub">
+<html ng-app="loginApp" ng-controller="loginCtrl as lctrl" >
   <head>
     <meta charset="utf-8">
-    <title>pubf</title>
+    <title>手语教育及出版平台－郑州大学出版社</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width">
-    <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+    <link href="login_s/css/bootstrap.css" rel="stylesheet">
+    <link href="css/index.css" rel="stylesheet">
+    <script src="login_s/js/jquery2.2.2.min.js"></script>
+    <script src="login_s/js/bootstrap.min.js"></script>
+    <script src="login_s/js/angular.js"></script>
+    <!--<script src="login_s/js/regUser.js"></script> //-->
+    <script src="login_s/js/login_v.js"></script>
 
-    <!-- build:css({.tmp/serve,src}) styles/vendor.css -->
-    <!-- bower:css -->
-    <!-- run `gulp inject` to automatically populate bower styles dependencies -->
-    <!-- endbower -->
-    <!-- endbuild -->
-
-    <!-- build:css({.tmp/serve,src}) styles/app.css -->
-    <!-- inject:css -->
-    <!-- css files will be automatically insert here -->
-    <!-- endinject -->
-    <!-- endbuild -->
+    <style>
+      #moban {
+        background: url(./images/郑大出版社手语主页.jpg) no-repeat 0px -1250px;
+        width: 100%;
+        height: 680px;
+      }
+    </style>
   </head>
-  <body>
+  <body ng-controller="regCtrl as ctrl">
     <!--[if lt IE 10]>
       <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
-
-    <div ui-view></div>
-
-    <!-- build:js(src) scripts/vendor.js -->
-    <!-- bower:js -->
-    <!-- run `gulp inject` to automatically populate bower script dependencies -->
-    <!-- endbower -->
-    <!-- endbuild -->
-
-    <!-- build:js({.tmp/serve,.tmp/partials,src}) scripts/app.js -->
-    <!-- inject:js -->
-    <!-- js files will be automatically insert here -->
-    <!-- endinject -->
-
-    <!-- inject:partials -->
-    <!-- angular templates will be automatically converted in js and inserted here -->
-    <!-- endinject -->
-    <!-- endbuild -->
-
-  </body>
+    <nav class="navbar navbar-static-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#defaultNavbar1" aria-expanded="false"><span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button>
+          <a class="navbar-brand" href="#">欢迎来到手语教育！</a></div>
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="defaultNavbar1">
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="#"><span class="glyphicon glyphicon-phone"> </span> 客户端</a></li>
+            <li><a href="#">我的收藏</a></li>
+            <li><a href="#"></a></li>
+            <li role="separator" class="nav-divider"></li>
+            <li><a href="#"><span class="glyphicon glyphicon-phone-alt"> </span> 服务电话:0371-66658415</a></li>
+          </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+      </div>
+      <!-- /.container-fluid -->
+    </nav>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6"><img src="./images/logo1.png" alt="logo"></div>
+        <div class="col-md-6">
+          <div class="form-group">
+            <div class="input-group">
+                <div class="input-group-addon"> 课程 </div>
+                <div> <input list="dl" type="text" class="form-control" placeholder="请输入课程名称...">
+                  <datalist id="dl">
+                    <option value="生产力管理"></option>
+                    <option value="领导艺术"></option>
+                    <option value="市场与营销"></option>
+                    <option value="网络技术"></option>
+                  </datalist>
+                </div>
+                <div class="input-group-addon"><a type="button"  href="#">  搜索  </a> </div>
+            </div>
+              <div>
+                <span class="rec_seach"> 生产管理    人力资源    领导力管理    销售与市场</span>
+              </div>
+          </div>
+        </div>
+      </div>
+    </div>
+<div class="container-fluid">
+      <div class="row">
+        <div class="col-md-12 lbar"></div>
+      </div>
+</div>
+<div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <div ng-include="'nav_inc.html'"></div>
+        </div>
+      </div>
+</div>
+<div ng-include="'lunbo_inc.html'"></div>
+<div class="container">
+  <div class="row">
+    <div class="col-md-3" ng-include="'ziyuan_inc.html'"></div>
+    <div class="col-md-9">
+      <div class="row" style="margin-left:-4px">
+      <div class="col-md-4" ng-include="'yueCourse_inc.html'"> </div>
+      <div class="col-md-4" ng-include="'hotCourse_inc.html'"></div>
+      <div class="col-md-4" id="userinfo" ng-include="lctrl.my_incfile1"></div>
+       <!--div class="col-md-4"> <login-com> </login-com></div//-->
+      </div>
+      <div class="row"  style="margin-left:-4px">
+       <div class="col-md-6 yanshiimg"><img src="images/tiyan1.png"></div>
+       <div class="col-md-6 yanshiimg"><img src="images/tiyan2.png"></div>
+      </div>
+    </div>
+  </div>
+</div>
+<div>
+<div id="moban"></div>
+    <div ng-include="'reg_inc.html'"></div>
+</div>
+</body>
 </html>
+

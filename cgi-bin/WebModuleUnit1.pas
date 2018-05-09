@@ -108,31 +108,31 @@ procedure TWebModule1.login(Sender: TObject; Request: TWebRequest;
 var
   ss:string;
   level,nickname,usrid,pw,ptopid:string;
-  jsobj:tjsonObject;
+  jsobj,jsobjo:tjsonObject;
   md5:imd5;
 begin
   try
     response.SetCustomHeader('Access-Control-Allow-Origin', '*');
     response.SetCustomHeader('Access-Control-Allow-Headers','Origin, X-Requested-With, Content-Type, Accept');
     ss:=utf8encode(request.Content);
-    //if antiattak(ss) then exit;
-    jsobj:=TJSONObject.ParseJSONValue(Trim(ss)) as TJSONObject;
-    usrid:=jsobj.GetValue('userid').Value;//.ToJSON;
-    pw:=jsobj.GetValue('passwd').Value;
+    if antiattak(ss) then exit;
+    jsobjo:=TJSONObject.ParseJSONValue(Trim(ss)) as TJSONObject;
+    usrid:=jsobjo.GetValue('userid').Value;//.ToJSON;
+    pw:=jsobjo.GetValue('passwd').Value;
     MD5 := GetMD5;
     MD5.Init;
     MD5.Update(TByteDynArray(RawByteString(pw)), Length(pw));
     pw:=md5.AsString;
     jsobj:=tjsonObject.Create;
     adoquery1.SQL.Clear;
-    adoquery1.SQL.Add('select top 1 * from ab_users where 用户号 = '''+usrid+''' and 密码 = '''+pw+'''');
-    //adoquery1.SQL.Add('select top 1 ab_users.用户号,昵称,用户类别 from ab_users,ab_reguser where (ab_users.用户号 = '''+usrid+
-      //              ''') and (密码 = '''+pw+''') and (ab_users.用户号=ab_reguser.用户号)');
+    //adoquery1.SQL.Add('select top 1 * from ab_users where 用户号 = '''+usrid+''' and 密码 = '''+pw+'''');
+    adoquery1.SQL.Add('select top 1 ab_users.用户号,昵称,用户类别 from ab_users,ab_reguser where (ab_users.用户号 = '''+usrid+
+                    ''') and (密码 = '''+pw+''') and (ab_users.用户号=ab_reguser.用户号)');
     adoquery1.Open;
 
     if adoquery1.RecordCount=0 then begin
       jsobj.AddPair('code','1') ;
-      jsobj.AddPair('code2',adoquery1.SQL.Text) ;
+      jsobj.AddPair('ptopid','0') ;
     end else begin
       nickname:=adoquery1.FieldByName('昵称').AsString;
       level:=adoquery1.FieldByName('用户类别').AsString;
@@ -143,17 +143,21 @@ begin
                          ptopid+''','''+usrid+''','''+'D'+''','''+level+''','''+nickname+''','''+request.RemoteAddr+
                          ''','''+datetimetostr(now+0.1)+''')');
        adoquery1.ExecSQL;
+       //jsobj.AddPair('code1',adoquery1.SQL.Text);
        adoquery1.sql.Clear;
-       adoquery1.SQL.Add('update ab_regUser set 最后登录时间='''+datetimetostr(now())+''', 最后登录IP='''+
+       adoquery1.SQL.Add('update ab_Users set 最后登录时间='''+datetimetostr(now())+''', 最后登录IP='''+
                          request.RemoteAddr+''',登录次数=1  where 用户号='''+usrid+'''');
        adoquery1.ExecSQL;
        jsobj.AddPair('code','0');
+       //jsobj.AddPair('code2',adoquery1.SQL.Text);
        jsobj.AddPair('ptopid',ptopid);
     end;
     response.Content:=jsobj.ToJSON;
 
   except on e:exception do begin
-     jsobj.AddPair('error',e.Message);
+     jsobj:=tjsonobject.Create;
+     jsobj.AddPair('code','2');
+     jsobj.AddPair('code2',e.Message);
      response.Content:=jsobj.ToJSON;
      end;
   end;

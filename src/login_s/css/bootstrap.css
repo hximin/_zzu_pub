@@ -4246,7 +4246,7 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
 }
 @media (min-width: 768px) {
   .navbar-static-top {
-    border-radius: 0;
+    border-radius: 0px;
   }
 }
 .navbar-fixed-top,

@@ -5,7 +5,7 @@
 angular.module("regApp",[])
   .controller("regCtrl",['$http',function($http){
     var self=this;
-    var isExist=false;
+    self.isExist=false;
     var notSame=false;
     self.user={};
     self.addaUser=function(){
@@ -20,6 +20,7 @@ angular.module("regApp",[])
         }
       })
     }
+
     self.submit=function(){
       if (self.user.passwd1==self.user.passwd2) {
         self.notSame=false;

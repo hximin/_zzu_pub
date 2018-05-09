@@ -1,0 +1,40 @@
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h3 class="panel-title">手语教育平台登录</h3>
+  </div>
+  <div class="panel-body"> <div class="row">
+    <div class="col-md-12">
+      <form role="form" name="myform" ng-submit="lctrl.submit()">
+      <div class="form-group">
+        <label for="userid">
+          账号:
+        </label>
+        <div class="input-group">
+          <span class=" input-group-addon"><span class="glyphicon glyphicon-user" aria-hidden="true"></span></span>
+          <input type="text" class="form-control" id="userid" name="userid" required="true" placeholder="请输入用户名" ng-model="lctrl.user.userid">
+        </div>
+      </div>
+      <div class="form-group" style="margin-top: 20px">
+        <label for="passwd">
+          密码:
+        </label><label style="float: right">忘记密码?</label>
+        <div class="input-group">
+          <span class=" input-group-addon">
+          <span class="glyphicon glyphicon-lock" aria-hidden="true"></span></span>
+          <input type="password" class="form-control" required="true" name="passwd" id="passwd" ng-model="lctrl.user.passwd">
+        </div>
+      </div>
+      <div class="checkbox">
+        <label>
+          <input type="checkbox">记住账号，下次登录免输入
+        </label>
+      </div>
+      <button type="submit" class="btn loginbtns" ng-disabled="myform.$invalid"  style="margin-top: 20px">登录</button>
+
+    </form>
+    </div>
+  </div>
+  </div>
+  <div class="panel-footer"><span><a href="#" data-toggle="modal" data-target="#regModal"> 没有账号? 立即注册</a></span></div>
+
+</div>
