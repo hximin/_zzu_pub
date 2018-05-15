@@ -7,7 +7,7 @@ uses System.SysUtils, System.Classes, Web.HTTPApp, Web.HTTPProd, Data.DB,System.
   IdBaseComponent, IdComponent, IdTCPConnection, IdTCPClient, IdHTTP,DateUtils,
   IdIOHandler, IdIOHandlerSocket, IdIOHandlerStack, IdSSL, IdSSLOpenSSL,System.RegularExpressions;
 const
-  accessKey='LFTAPP01_38FC87EA23';
+  accessKey='LFT A23';
 
 type
   TWebModule1 = class(TWebModule)
@@ -209,7 +209,7 @@ procedure TWebModule1.sendsms(Sender: TObject; Request: TWebRequest;
   Response: TWebResponse; var Handled: Boolean);
 const
   pattern='^1[34578](\d{9})$';
-  appkey='appkey=1ad520885f2aa08102a39951b593f8ed&';
+  appkey='appkey=3f8ed&';
   tpl_id='120578';
 var
   SHA256 : TIdHashSHA256;
@@ -281,7 +281,7 @@ begin
          httpclient.Request.Accept := 'text/javascript';
          httpclient.Request.ContentType := 'application/json';//设置内容类型为json
          httpclient.Request.ContentEncoding := 'utf-8';
-         HttpClient.Post('https://yun.tim.qq.com/v5/tlssmssvr/sendsms?sdkappid=1400090894&random='+intTostr(arandom),jsonTosend,ss);
+         HttpClient.Post('https://yun.tim.qq.com/v5/tlssmssvr/sendsms?sdkappid=14094&random='+intTostr(arandom),jsonTosend,ss);
 
          jsobjc:=tjsonobject.ParseJSONValue(SS.DataString) as tjsonobject; //处理返回json
 
