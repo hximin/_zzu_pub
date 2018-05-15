@@ -6,6 +6,7 @@ angular.module("regApp",[])
   .controller("regCtrl",['$http',function($http){
     var self=this;
     self.isExist=false;
+    self.notagree=true;
     var notSame=false;
     self.user={};
     self.addaUser=function(){

@@ -1,0 +1,41 @@
+<!doctype html>
+<html ng-app="sessionApp" ng-controller="sessionCtrl" >
+<head>
+  <meta charset="utf-8">
+  <title>test社</title>
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width">
+  <link href="login_s/css/bootstrap.css" rel="stylesheet">
+  <link href="css/index.css" rel="stylesheet">
+  <script src="login_s/js/jquery2.2.2.min.js"></script>
+  <script src="login_s/js/bootstrap.min.js"></script>
+  <script src="login_s/js/common.js"></script>
+  <script src="login_s/js/angular.js"></script>
+  <!--<script src="login_s/js/regUser.js"></script> //-->
+  <script src="login_s/js/session_t2.js"></script>
+  <script src="login_s/js/core.js"></script>
+  <script src="login_s/js/sha256.js"></script>
+
+  <script>
+    var hash = CryptoJS.SHA256("appkey=5f03a35d00ee52a21327ab048186a2c4&random=7226249334&time=1457336869&mobile=13788888888");
+  </script>
+</head>
+<body>
+<input type="text" ng-model="ssn1">
+<input type="text" ng-model="ssn2">
+<input type="button" ng-click="getsession()" value="ok">
+
+watch 2 input 1-{{newssn1}}  2-{{oldssn1}}
+<script>
+  var hash = CryptoJS.SHA256("appkey=5f03a35d00ee52a21327ab048186a2c4&random=7226249334&time=1457336869&mobile=13788888888");
+</script>
+<input type="button" ng-click="sendsms()" value="send">
+<hr>
+<input type="button" ng-click="sendsms2()" value="send2">
+
+<input type="text" ng-model="mobileUser.mobile">
+<input type="text" ng-model="mobileUser.vcode">
+<input type="button" ng-click="reg_login()" value="reg & login">
+
+</body>
+</html>

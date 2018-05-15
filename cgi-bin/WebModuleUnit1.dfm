@@ -25,6 +25,16 @@ object WebModule1: TWebModule1
       Name = 'WebActionItem4'
       PathInfo = '/login'
       OnAction = login
+    end
+    item
+      Name = 'WebActionItem5'
+      PathInfo = '/sendsms'
+      OnAction = sendsms
+    end
+    item
+      Name = 'WebActionItem6'
+      PathInfo = '/appreg'
+      OnAction = appreg
     end>
   Height = 230
   Width = 415
@@ -39,13 +49,25 @@ object WebModule1: TWebModule1
       ',64321'
     LoginPrompt = False
     Provider = 'SQLOLEDB.1'
-    Left = 160
-    Top = 24
+    Left = 136
+    Top = 40
   end
   object ADOQuery1: TADOQuery
     Connection = ADOConnection1
     Parameters = <>
-    Left = 240
-    Top = 32
+    Left = 216
+    Top = 40
+  end
+  object ADOQryP: TADOQuery
+    Connection = ADOConnection1
+    Parameters = <>
+    Left = 312
+    Top = 48
+  end
+  object adoqryP2: TADOQuery
+    Connection = ADOConnection1
+    Parameters = <>
+    Left = 328
+    Top = 112
   end
 end

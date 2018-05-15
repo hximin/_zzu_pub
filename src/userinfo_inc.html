@@ -3,13 +3,23 @@
     <h3 class="panel-title">用户信息</h3>
   </div>
   <div class="panel-body">
-    <div class="row">
-      <img ng-src="images/user1.png">
+    <div class="row" align="center">
+      <div class="col-md-12"><img ng-src={{loggedInCookie._photo}} width="160"></div>
+      <div class="col-md-12"><label>{{loggedInCookie._nickname}}</label></div>
     </div>
     <div class="row">
-
+      <div class="col-md-4">身份:{{loggedInCookie._usertype}}</div>
+      <div class="col-md-4">等级:{{loggedInCookie._grade}}</div>
+      <div class="col-md-4">消息数:{{loggedInCookie._msg}}</div>
+    </div>
+    <div class="row"> <div class="col-md-12">　</div></div>
+    <div class="row">
+      <div class="col-md-6">登录次数:{{loggedInCookie._logintimes}}</div>
+      <div class="col-md-6">财 富 值:{{loggedInCookie._money}}</div>
+    </div>
+    <div class="row">
+      <div class="panel-title">
+      <a class="btn btn-info" href="{{loggedInCookie._myurl}}" target="_blank">进入我的课程</a> <a class="btn btn-danger" ng-click="removeCookie('_pub_user_ck')">退出</a>  </div>
     </div>
   </div>
-
-
 </div>

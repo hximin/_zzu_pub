@@ -54,6 +54,12 @@ begin
 end;
 
 begin
+  if queryStr='' then begin
+    result:=true;
+    exit;
+  end;
+
+
   antiStrings:='SELECT|UPDATE|INSERT|FROM|EXEC|MASTER|CREATE|DROP|TABLE|OR|AND|DELETE|IF|NULL|UNION|WHERE|HAVING|>|%|=|<|)';
   qstr:=Uppercase(queryStr);
   antis:=tStringlist.Create;
