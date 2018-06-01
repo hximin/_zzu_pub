@@ -1,0 +1,23 @@
+<nav class="navbar navbar-static-top" ng-controller="sessionCtrl">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#defaultNavbar1" aria-expanded="false"><span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button>
+      <a class="navbar-brand" href="/" style="color: #ffffff">欢迎来到手语教育！</a></div>
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="defaultNavbar1">
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="/" ng-show="{{!loggedInCookie._isLoggedIn}}"><span class="glyphicon glyphicon-user"></span> >登录</a></li>
+        <li class="dropdown"><a href="#" ng-show="{{loggedInCookie._isLoggedIn}}" data-toggle="dropdown" class="dropdown-toggle"><img ng-src="{{loggedInCookie._photo}}" class="img-circle" height="20px"><b class="caret" style="color:#fff;"></b></a>
+        <ul class="dropdown-menu">
+          <li><a href="{{loggedInCookie._myurl}}">{{loggedInCookie._myurlname}}</a></li>
+          <li role="separator" class="divider"></li>
+          <li><a ng-click="removeCookie('_pub_user_ck')">退出</a></li>
+        </ul>
+        </li>
+        <li><a href="#"><span class="glyphicon glyphicon-phone"> </span> 客户端</a></li>
+        <li><a href="#"><span class="glyphicon glyphicon-phone-alt"> </span> 服务电话:0371-66658415</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+

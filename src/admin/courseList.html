@@ -1,0 +1,39 @@
+<div role="tabpanel">
+  <ul class="nav nav-tabs" role="tablist">
+    <li role="presentation" class="active"><a data-toggle="tab" role="tab" aria-controls="tab1">课程管理</a></li>
+  </ul>
+  <div id="tabContent1" class="tab-content">
+    <div role="tabpanel" class="tab-pane fade in active" id="home1">
+      <table class="table table-bordered">
+        <thead>
+        <tr>
+          <th>课程名</th>
+          <th>课程号</th>
+          <th>作者</th>
+          <th>类别</th>
+          <th>业务分类</th>
+          <th>学科</th>
+
+          <th>操作</th>
+        </tr>
+        </thead>
+        <tbody>
+          <tr ng-repeat="course in courses">
+            <td>{{course.bookName}}</td>
+            <td>{{course.bookNo}}</td>
+            <td>{{course.author}}</td>
+            <td>{{course.zhongtu}}</td>
+            <td>{{course.yewu}}</td>
+            <td>{{course.xueke}}</td>
+
+            <td><a href="#/modi:{{course.courseid}}" class="btn btn-danger">修改</a> <a href="#/view/{{utb}}?uid={{course.userid}}&ptopid={{loggedInCookie._ptopid}}" class="btn btn-info">查看</a> </td>
+          </tr>
+          </tbody>
+        </table>
+      <hr>
+      </div>
+    </div>
+  </div>
+</div>
+
+

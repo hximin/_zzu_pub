@@ -1,0 +1,39 @@
+<div role="tabpanel">
+  <ul class="nav nav-tabs" role="tablist">
+    <li role="presentation" class="active"><a data-toggle="tab" role="tab" aria-controls="tab1">用户管理</a></li>
+  </ul>
+  <div id="tabContent1" class="tab-content">
+    <div role="tabpanel" class="tab-pane fade in active" id="home1">
+      <table class="table table-bordered">
+        <thead>
+        <tr>
+          <th>用户名</th>
+          <th>姓名</th>
+          <th>性别</th>
+          <th>昵称</th>
+          <th>手机号</th>
+          <th>登录次数</th>
+          <th>最后登录</th>
+          <th>有效性</th>
+          <th>操作</th>
+        </tr>
+        </thead>
+        <tbody>
+          <tr ng-repeat="user in users">
+            <td>{{user.userid}}</td>
+            <td>{{user.username}}</td>
+            <td>{{user.sex | sexfilter }}</td>
+            <td>{{user.nickname}}</td>
+            <td>{{user.phone}}</td>
+            <td>{{user.times}}</td>
+            <td>{{user.lastTime}}</td>
+            <td>{{user.isvalid}}</td>
+            <td><a href="#/detail/:{{user.userid}}" class="btn btn-info">修改</a> <a href="#/del/{{utb}}?uid={{user.userid}}&ptopid={{loggedInCookie._ptopid}}" ng-show="{{user.isvalid}}" class="btn btn-danger">禁用</a> <a href="#/del/{{utb}}?uid={{user.userid}}&res=1&ptopid={{loggedInCookie._ptopid}}" ng-show="!{{user.isvalid}}" class="btn btn-warning">启用</a> </td>
+          </tr>
+          </tbody>
+        </table>
+      <hr>
+      </div>
+    </div>
+  </div>
+</div>

@@ -5,91 +5,58 @@
     <title>手语教育及出版平台－郑州大学出版社</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width">
-    <link href="login_s/css/bootstrap.css" rel="stylesheet">
+    <link href="css/bootstrap.css" rel="stylesheet">
     <link href="css/index.css" rel="stylesheet">
-    <script src="login_s/js/jquery2.2.2.min.js"></script>
-    <script src="login_s/js/bootstrap.min.js"></script>
-    <script src="login_s/js/angular.js"></script>
-    <script src="login_s/js/angular-cookies.js"></script>
-    <!--<script src="login_s/js/regUser.js"></script> //-->
-    <script src="login_s/js/login_v.js"></script>
+    <link rel="shortcut icon" href="./favicon.ico"/>
     <style>
       #moban {
-
         background: url(./images/moban.jpg) no-repeat 0px -1250px;
         width: 100%;
         height: 680px;
       }
     </style>
+    <script src="login_s/js/jquery2.2.2.min.js"></script>
+    <script src="login_s/js/bootstrap.min.js"></script>
+    <script src="login_s/js/angular.js"></script>
+    <script src="login_s/js/angular-cookies.js"></script>
+    <script src="js/angular-route.js"></script>
+    <script src="login_s/controller/login_v.js"></script>
+    <script src="service/Service_course.js"></script>
+    <script src="controller/courseListCtrl.js"></script>
   </head>
-  <body>
+  <body ng-controller="loginCtrl as lctrl" >
     <!--[if lt IE 10]>
-      <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+      <p class="browsehappy">您正在使用已经 <strong>过时的</strong>的浏览器. 请 <a href="http://browsehappy.osfipin.com//">升级您的浏览器</a> 以改善用户体验.</p>
     <![endif]-->
-    <nav class="navbar navbar-static-top">
-      <div class="container">
-        <div class="navbar-header">
-          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#defaultNavbar1" aria-expanded="false"><span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button>
-          <a class="navbar-brand" href="#">欢迎来到手语教育！</a></div>
-        <!-- Collect the nav links, forms, and other content for toggling -->
-        <div class="collapse navbar-collapse" id="defaultNavbar1">
-          <ul class="nav navbar-nav navbar-right">
-            <li><a href="#"><span class="glyphicon glyphicon-phone"> </span> 客户端</a></li>
-            <li><a href="#">我的收藏</a></li>
-            <li><a href="#"></a></li>
-            <li role="separator" class="nav-divider"></li>
-            <li><a href="#"><span class="glyphicon glyphicon-phone-alt"> </span> 服务电话:0371-66658415</a></li>
-          </ul>
-        </div>
-        <!-- /.navbar-collapse -->
-      </div>
-      <!-- /.container-fluid -->
-    </nav>
-    <div class="container">
-      <div class="row">
-        <div class="col-md-6"><img src="./images/logo1.png" alt="logo"></div>
-        <div class="col-md-6">
-          <div class="form-group">
-            <div class="input-group">
-                <div class="input-group-addon"> 课程 </div>
-                <div> <input list="dl" type="text" class="form-control" placeholder="请输入课程名称...">
-                  <datalist id="dl">
-                    <option value="生产力管理"></option>
-                    <option value="领导艺术"></option>
-                    <option value="市场与营销"></option>
-                    <option value="网络技术"></option>
-                  </datalist>
-                </div>
-                <div class="input-group-addon"><a type="button"  href="#">  <span class="glyphicon glyphicon-search"></span>  </a> </div>
-            </div>
-              <div>
-                <span class="rec_seach"> 生产管理    人力资源    领导力管理    销售与市场</span>
-              </div>
-          </div>
-        </div>
-      </div>
-    </div>
+<div style="position:absolute;left: 0px;top:0px;">
+    <div id="top" ng-include="'top.html'"></div>
+    <div id="top" ng-include="'brand.html'"></div>
 <div class="container-fluid">
       <div class="row">
         <div class="col-md-12 lbar"></div>
       </div>
 </div>
-<div class="container">
-      <div class="row">
-        <div class="col-md-12">
+<!--div class="container">
           <div ng-include="'nav_inc.html'"></div>
-        </div>
-      </div>
+</div//-->
+<div style="position:relative;top:0px">
+ <div ng-include="'lunbo_inc.html'"></div>
 </div>
-<div ng-include="'lunbo_inc.html'"></div>
-<div class="container">
+<div class="container" style="position:absolute;top:183px;left: 0px;right:0px">
   <div class="row">
     <div class="col-md-3" ng-include="'ziyuan_inc.html'"></div>
+    <div class="col-md-9"></div>
+  </div>
+</div>
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-3"></div>
     <div class="col-md-9">
       <div class="row" style="margin-left:-4px">
       <div class="col-md-4" ng-include="'yueCourse_inc.html'"> </div>
       <div class="col-md-4" ng-include="'hotCourse_inc.html'"></div>
-      <div class="col-md-4" id="userinfo" ng-include="lctrl.my_incfile1" ng-controller="loginCtrl as lctrl" ></div>
+      <div class="col-md-4" id="userinfo" ng-include="lctrl.my_incfile1"></div>
        <!--div class="col-md-4"> <login-com> </login-com></div//-->
       </div>
       <div class="row"  style="margin-left:-4px">
@@ -103,6 +70,7 @@
 <div id="moban"></div>
     <div ng-include="'reg_inc.html'"></div>
 </div>
-</body>
+</div>
+  </body>
 </html>
 

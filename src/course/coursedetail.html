@@ -1,0 +1,77 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>手语教育及出版平台</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width">
+    <link href="../login_s/css/bootstrap.css" rel="stylesheet">
+    <link href="../css/index.css" rel="stylesheet">
+    <link rel="shortcut icon" href="../favicon.ico"/>
+    <script src="../login_s/js/jquery2.2.2.min.js"></script>
+    <script src="../login_s/js/bootstrap.min.js"></script>
+    <script src="../js/angular.js"></script>
+    <script src="../login_s/js/angular-cookies.js"></script>
+    <script src="../js/angular-route.js"></script>
+    <script src="../login_s/controller/login_v.js"></script>
+    <script src="../controller/courseListCtrl.js"></script>
+    <script src="directive/coursediv.js"></script>
+    <script src="controller/courseDetailCtrl.js"></script>
+    <style>
+    </style>
+  </head>
+  <body ng-app="loginApp">
+  <!--[if lt IE 10]>
+     <p class="browsehappy">您正在使用已经 <strong>过时的</strong>的浏览器. 请 <a href="http://browsehappy.osfipin.com//">升级您的浏览器</a> 以改善用户体验.</p>
+  <![endif]-->
+    <div id="top" ng-include="'../top_other.html'"></div>
+    <div id="top" ng-include="'../brand.html'"></div>
+<div class="container-fluid">
+      <div class="row">
+        <div class="col-md-12 lbar"></div>
+      </div>
+</div>
+<div class="container-fluid userpanel" ng-controller="courseDetailCtrl">
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="panel panel-default" style="min-height:200px">
+        <div class="panel-body">
+          <div course-basic></div>
+
+          <div class="col-md-4"><img src="../images/timg.gif"></div>
+          <div class="col-md-6"><h3>统计学{{courseid}}    </h3>
+              <div>主讲人：曾五一，肖红叶</div>
+              <div>学时：48.0　　学分：3</div>
+              <div>报名人数：35人</div>
+          </div>
+          <div class="col-md-2 text-right"><a class="btn btn-warning">  报名学习  </a> </div>
+
+        </div>
+      </div>
+    </div>
+    <div class="col-md-9">
+      <div class="panel panel-default" style="min-height:500px">
+        <div class="panel-body">
+          课程简介
+        </div>
+      </div>
+    </div>
+    <div class="col-md-3">
+      <div class="panel panel-default" style="min-height:500px">
+        <div class="panel-body">
+          主讲老师
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+<div class="container-fluid">
+      <div class="row">
+        <div class="col-md-12 lbar"></div>
+      </div>
+</div><div ng-include="'../footer_inc.html'"></div>
+</body>
+</html>
+

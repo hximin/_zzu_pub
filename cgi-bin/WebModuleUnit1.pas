@@ -7,7 +7,7 @@ uses System.SysUtils, System.Classes, Web.HTTPApp, Web.HTTPProd, Data.DB,System.
   IdBaseComponent, IdComponent, IdTCPConnection, IdTCPClient, IdHTTP,DateUtils,
   IdIOHandler, IdIOHandlerSocket, IdIOHandlerStack, IdSSL, IdSSLOpenSSL,System.RegularExpressions;
 const
-  accessKey='LFT A23';
+  accessKey='LFTAPP01_38FC87EA23';
 
 type
   TWebModule1 = class(TWebModule)
@@ -30,9 +30,15 @@ type
       Response: TWebResponse; var Handled: Boolean);
     procedure appreg(Sender: TObject; Request: TWebRequest;
       Response: TWebResponse; var Handled: Boolean);
+    procedure getRegUsers(Sender: TObject; Request: TWebRequest;
+      Response: TWebResponse; var Handled: Boolean);
+    procedure deluser(Sender: TObject; Request: TWebRequest;
+      Response: TWebResponse; var Handled: Boolean);
   private
     procedure addAmobileUser(mobile:string);
     function makeAptopid(mobile:string):TjsonObject;
+    procedure writeLog(userid,whattime,ip,dowhat,what:string);
+    function getPtopFsValue(ptopid,fdname:string):string;
     { Private declarations }
   public
 
@@ -47,7 +53,41 @@ implementation
 {%CLASSGROUP 'Vcl.Controls.TControl'}
 
 {$R *.dfm}
-
+function TWebModule1.getPtopFsValue(ptopid,fdname:string):string;
+var
+  ss:string;
+begin
+  adoqryp.SQL.Clear;
+  adoqryp.SQL.Add('select 对话号,'+fdname+' from ab_ptop where 对话号='''+ptopid+'''');
+  adoqryp.Open;
+  if adoqryp.RecordCount<>0 then begin
+    ss:=adoqryp.fieldbyname(fdname).AsString;
+    adoqryp.Close;
+    Result:=trim(ss);
+  end else begin
+    adoqryp.Close;
+    Result:='';
+  end;
+end;
+procedure TWebModule1.writeLog(userid,whattime,ip,dowhat,what:string);
+var
+  sn:string;
+begin
+ try
+  dowhat:=copy(dowhat,1,4);
+  sn:=stringreplace(whattime,'-','',[rfReplaceAll]);
+  sn:=stringreplace(whattime,'/','',[rfReplaceAll]);
+  sn:=stringreplace(sn,':','',[rfReplaceAll]);
+  sn:=stringreplace(sn,' ','',[rfReplaceAll]);
+  sn:=sn+userid+dowhat;
+  ADOQryP2.SQL.Clear;
+  ADOQryP2.SQL.Add('insert into ab_loginLog values('''+sn+''','''+userid+''','''+whattime+''','''+dowhat+''','''+what+''','''+ip+''')');
+  ADOQryp2.ExecSQL;
+ except
+   on e:exception do
+    ;
+ end;
+end;
 function Twebmodule1.makeAptopid(mobile:string):TjsonObject;
 var
   js:TjsonObject;
@@ -82,6 +122,8 @@ begin
          adoqryP.SQL.Add('update ab_Users set 最后登录时间='''+datetimetostr(now())+''', 最后登录IP='''+
                          request.RemoteAddr+''',登录次数=登录次数+1  where 用户号='''+userid+'''');
          adoqryP.ExecSQL;
+         writelog(userid,datetimetostr(now),request.RemoteAddr,'login','手机号'+mobile);
+
          //jsobj.AddPair('code2',adoqryP.SQL.Text);
          adoqryP.SQL.Clear;
          adoqryP.SQL.Add('select * from ab_sysfun where 模块编号='''+usertypeid+'AP''');
@@ -130,6 +172,7 @@ begin
     response.SetCustomHeader('Access-Control-Allow-Headers','Origin, X-Requested-With, Content-Type, Accept');
     //response.SetCustomHeader('Access-Control-Allow-Headers','*');
     ss:=utf8encode(request.Content);
+
     if ss='' then ss:='{"ok":"0"}';
     if antiattak(ss) then exit;
     jsobjo:=TJSONObject.ParseJSONValue(Trim(ss)) as TJSONObject;
@@ -209,7 +252,7 @@ procedure TWebModule1.sendsms(Sender: TObject; Request: TWebRequest;
   Response: TWebResponse; var Handled: Boolean);
 const
   pattern='^1[34578](\d{9})$';
-  appkey='appkey=3f8ed&';
+  appkey='appkey=1ad520885f2aa08102a39951b593f8ed&';
   tpl_id='120578';
 var
   SHA256 : TIdHashSHA256;
@@ -248,7 +291,7 @@ begin
     if (strToint(timestamp)-lasttime)>60 then begin
       randomNum:='random='+inttostr(arandom)+'&';
       if (userkey=accessKey) then begin
-       if TRegEx.IsMatch(phonenum,pattern)then begin
+        if TRegEx.IsMatch(phonenum,pattern)then begin
          IdSSLOpenSSLHeaders.Load();
          SHA256 := TIdHashSHA256.Create;
          mobile:='mobile='+phonenum;
@@ -281,29 +324,22 @@ begin
          httpclient.Request.Accept := 'text/javascript';
          httpclient.Request.ContentType := 'application/json';//设置内容类型为json
          httpclient.Request.ContentEncoding := 'utf-8';
-         HttpClient.Post('https://yun.tim.qq.com/v5/tlssmssvr/sendsms?sdkappid=14094&random='+intTostr(arandom),jsonTosend,ss);
-
+         HttpClient.Post('https://yun.tim.qq.com/v5/tlssmssvr/sendsms?sdkappid=1400090894&random='+intTostr(arandom),jsonTosend,ss);
          jsobjc:=tjsonobject.ParseJSONValue(SS.DataString) as tjsonobject; //处理返回json
-
          retNo:=jsobjc.Values['result'].Value;//.ToString;
-
-         if (retno='0') then begin
-           ;
-         end;
          jsback.AddPair('code',retno);
          jsback.AddPair('errmsg',jsobjc.Values['errmsg'].Value);
-
         end else begin
           retno:='2';
           jsback.AddPair('code',retno);
           jsback.AddPair('errmsg','phone number is bad.');
-
         end;
-       end else begin
+
+      end else begin
          retno:='1';
          jsback.AddPair('code',retno);
          jsback.AddPair('errmsg','accessKey is bad.');
-       end;
+      end;
     end else begin
        retno:='3';
        jsback.AddPair('code',retno);
@@ -311,11 +347,11 @@ begin
        jsback.AddPair('ext',ext);
     end;
       //写记录
-       adoquery1.SQL.Clear;
-       adoquery1.SQL.Add('insert into ab_sendsms values('''+userkey+''','''+datetimetostr(now)+
+    adoquery1.SQL.Clear;
+    adoquery1.SQL.Add('insert into ab_sendsms values('''+userkey+''','''+datetimetostr(now)+
                    ''','''+phoneNum+''','''+inttostr(arandom)+''','''+retno+''','+timestamp+')');
-       adoquery1.ExecSQL;
-       response.Content:=jsback.ToJSON;
+    adoquery1.ExecSQL;
+    response.Content:=jsback.ToJSON;
   except on e:exception do
     begin
      jsback.AddPair('sysErr',e.Message);
@@ -363,9 +399,7 @@ begin
       adoquery1.Close;
       jsback:=makeAptopid(mobile);
     end;
-
     response.Content:=jsback.ToJSON;
-
   except on e:exception do begin
      jsback:=tjsonobject.Create;
      jsback.AddPair('code','2');
@@ -375,6 +409,98 @@ begin
   end;
 end;
 
+procedure TWebModule1.deluser(Sender: TObject; Request: TWebRequest;
+  Response: TWebResponse; var Handled: Boolean);
+var
+  op,ss,userid:string;
+  usertype,ptopid:string;
+  jsobj,jsobjo:tjsonObject;
+  jsArr:TjsonArray;
+  i:integer;
+begin
+  try
+    response.SetCustomHeader('Access-Control-Allow-Origin', '*');
+    response.SetCustomHeader('Access-Control-Allow-Headers','Origin, X-Requested-With, Content-Type, Accept');
+    op:=request.QueryFields.Values['res'];
+    userid:=request.QueryFields.Values['uid'];
+    ss:=utf8encode(request.Content);
+    if antiattak(ss+userid+op) then exit;
+    jsobjo:=TJSONObject.ParseJSONValue(Trim(ss)) as TJSONObject;
+    ptopid:=jsobjo.GetValue('ptopid').Value;//.ToJSON;}
+    usertype:=getptopFsValue(ptopid,'用户类别');
+    if usertype<>'A' then exit;
+    adoquery1.SQL.Clear;
+    if op='1' then adoquery1.SQL.Add('update ab_users set 是否有效=1 where 用户号='''+userid+'''')
+    else adoquery1.SQL.Add('update ab_users set 是否有效=0 where 用户号='''+userid+'''');
+    adoquery1.ExecSQL;
+    jsobj:=tjsonObject.Create;
+    jsobj.addPair('code','a');
+    jsobj.addPair('msg','set ok!');
+    response.Content:=jsobj.ToString;
+  except on e:exception do
+    begin
+     jsobj:=tjsonObject.Create;
+     jsobj.addPair('msg',e.Message);
+     response.Content:=jsobj.ToString;
+    end;
+  end;
+end;
+
+procedure TWebModule1.getRegUsers(Sender: TObject; Request: TWebRequest;
+  Response: TWebResponse; var Handled: Boolean);
+var
+  ss,userTable:string;
+  usertype,ptopid:string;
+  jsobj,jsobjo:tjsonObject;
+  jsArr:TjsonArray;
+  i:integer;
+begin
+  try
+    response.SetCustomHeader('Access-Control-Allow-Origin', '*');
+    response.SetCustomHeader('Access-Control-Allow-Headers','Origin, X-Requested-With, Content-Type, Accept');
+    usertable:=request.QueryFields.Values['t'];
+
+    ss:=utf8encode(request.Content);
+    if antiattak(ss+usertable) then exit;
+    jsobjo:=TJSONObject.ParseJSONValue(Trim(ss)) as TJSONObject;
+    ptopid:=jsobjo.GetValue('ptopid').Value;//.ToJSON;}
+    usertype:=getptopFsValue(ptopid,'用户类别');
+    if usertype<>'A' then exit;
+
+
+    adoquery1.SQL.Clear;
+    if usertable='ureg' then
+     adoquery1.SQL.Add('select u.用户号 as userid,昵称 as nickname , 姓名 as username,手机号 as phone,'+
+                       '登录次数 as times , 最后登录时间 as lastTime , 是否有效 as isvalid ,性别 as sex '+
+                       'from ab_users as u ,ab_regUser where u.用户号=ab_regUser.用户号');
+    if usertable='utea' then
+     adoquery1.SQL.Add('select u.用户号 as userid,昵称 as nickname , 姓名 as username,手机号 as phone,'+
+                       '登录次数 as times , 最后登录时间 as lastTime , 是否有效 as isvalid ,性别 as sex '+
+                       'from ab_users as u ,ab_teacher where u.用户号=ab_teacher.用户号');
+
+    if usertable='uadm' then
+     adoquery1.SQL.Add('select u.用户号 as userid,昵称 as nickname , 姓名 as username,手机号 as phone,'+
+                       '登录次数 as times , 最后登录时间 as lastTime , 是否有效 as isvalid ,性别 as sex '+
+                       'from ab_users as u ,ab_userlib where u.用户号=ab_userlib.用户号');
+    adoquery1.Open;
+    jsArr:=TjsonArray.Create;
+    while not adoquery1.Eof do begin
+      jsobj:=tjsonObject.Create;
+      for I := 0 to adoquery1.Fields.Count-1 do
+        jsobj.AddPair(adoquery1.Fields[i].FieldName,adoquery1.Fields[i].AsString);
+      jsarr.Add(jsobj);
+      adoquery1.Next;
+    end;
+    adoquery1.Close;
+    response.Content:=jsarr.ToJSON;
+  except on e:exception do
+    begin
+     jsobj:=tjsonObject.Create;
+     jsobj.addPair('msg',e.Message);
+     response.Content:=jsobj.ToString;
+    end;
+  end;
+end;
 procedure TWebModule1.login(Sender: TObject; Request: TWebRequest;
   Response: TWebResponse; var Handled: Boolean);
 var
@@ -387,7 +513,7 @@ begin
     response.SetCustomHeader('Access-Control-Allow-Origin', '*');
     response.SetCustomHeader('Access-Control-Allow-Headers','Origin, X-Requested-With, Content-Type, Accept');
     ss:=utf8encode(request.Content);
-    if antiattak(ss) then exit;
+    //if antiattak(ss) then exit;
     jsobjo:=TJSONObject.ParseJSONValue(Trim(ss)) as TJSONObject;
     usrid:=jsobjo.GetValue('userid').Value;//.ToJSON;
     pw:=jsobjo.GetValue('passwd').Value;
@@ -419,6 +545,7 @@ begin
     if adoquery1.RecordCount=0 then begin
       jsobj.AddPair('code','1') ;
       jsobj.AddPair('ptopid','0') ;
+      writelog(usrid,datetimetostr(now),request.RemoteAddr,'login','失败');
     end else begin
       nickname:=adoquery1.FieldByName('昵称').AsString;
       userlevel:=adoquery1.FieldByName('用户级别').AsString;
@@ -437,10 +564,14 @@ begin
        adoquery1.SQL.Add('update ab_Users set 最后登录时间='''+datetimetostr(now())+''', 最后登录IP='''+
                          request.RemoteAddr+''',登录次数=登录次数+1  where 用户号='''+usrid+'''');
        adoquery1.ExecSQL;
+       writelog(usrid,datetimetostr(now),request.RemoteAddr,'login','成功');
        jsobj.AddPair('code','0');
        //jsobj.AddPair('code2',adoquery1.SQL.Text);
        adoquery1.SQL.Clear;
-       adoquery1.SQL.Add('select * from ab_sysfun where 模块编号='''+usertypeid+'01''');
+       if (trim(request.RemoteAddr)='10.113.31.24') then
+         adoquery1.SQL.Add('select * from ab_sysfun where 模块编号='''+usertypeid+'02''')
+       else
+         adoquery1.SQL.Add('select * from ab_sysfun where 模块编号='''+usertypeid+'01''');
        adoquery1.Open;
        firsturl:=adoquery1.FieldByName('模块指针').AsString;
        firsturl:=stringreplace(firsturl,'#P',ptopid,[]);
@@ -451,7 +582,9 @@ begin
        jsobj.AddPair('userGrade',userLevel);
        jsobj.AddPair('loginTimes',loginTimes);
        jsobj.AddPair('vmoney','1000');
+       jsobj.AddPair('myurlname',adoquery1.FieldByName('模块名称').AsString);
        jsobj.AddPair('myurl',firsturl);
+       adoquery1.Close;
     end;
     response.Content:=jsobj.ToJSON;
 

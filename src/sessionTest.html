@@ -17,7 +17,429 @@
 <body>
 <input type="text" ng-model="ssn1">
 <input type="text" ng-model="ssn2">
+<input type="text" ng-model="ssn3.name">
 <input type="button" ng-click="getsession()" value="ok">
+<hr>
 
+<!-- 导航菜单 -->
+<ul class="menu item pull-left" id="J_common_header_menu" data-spm="201">
+  <li class="top-menu-item" has-dropdown="true" menu-type="product" data-spm-click="">
+          <span class="menu-hd">
+            产品
+          </span>
+    <div class="menu-dropdown common-header-clearfix">
+      <div class="menu-dropdown-inner">
+        <div class="menu-dropdown-sidebar pull-left">
+          <a data-spm-click="gostr=/aliyun;locaid=" class="active common-header-clearfix"
+             href="javascript:void(0);" sidebar-type="ecs">
+            弹性计算
+                  <span class="icon pull-right">
+                  </span>
+          </a>
+          <a data-spm-click="gostr=/aliyun;locaid=" class=" common-header-clearfix"
+             href="javascript:void(0);" sidebar-type="database">
+            数据库
+                  <span class="icon pull-right">
+                  </span>
+          </a>
+          <a data-spm-click="gostr=/aliyun;locaid=" class=" common-header-clearfix"
+             href="javascript:void(0);" sidebar-type="cdn">
+            存储与CDN
+                  <span class="icon pull-right">
+                  </span>
+          </a>
+        </div>
+        <div class="menu-dropdown-content">
+          <!-- 下拉右侧内容 -->
+          <!-- 模板一： -->
+          <div style="display: block;background-image:url(./images/ecs-bg-x1.jpg);"
+               class="item-sub ecs-bg tpl1 product-bg-common common-header-clearfix" sidebar-type="ecs">
+            <div class="menu-dropdown-bd menu-dropdown-split-line">
+              <div class="menu-dropdown-down-item">
+                <a href="http://sc.chinaz.com/product/ecs/">
+                  <h4>
+                    云服务器 ECS
+                  </h4>
+                  <div class="desc">
+                    可弹性扩展、安全稳定、简单易用的计算服务
+                  </div>
+                </a>
+              </div>
+              <div class="menu-dropdown-down-item">
+                <a href="http://sc.chinaz.com/product/disk/">
+                  <h4>
+                    块存储
+                  </h4>
+                  <div class="desc">
+                    可弹性扩展、高性能、高可靠的块级随机存储
+                  </div>
+                </a>
+              </div>
+              <div class="menu-dropdown-down-item">
+                <a href="http://sc.chinaz.com/product/ace/">
+                  <h4>
+                    云引擎 ACE
+                  </h4>
+                  <div class="desc">
+                    弹性、分布式的应用托管环境
+                  </div>
+                </a>
+              </div>
+              <div class="menu-dropdown-down-item">
+                <a href="http://sc.chinaz.com/product/ess/">
+                  <h4>
+                    弹性伸缩
+                  </h4>
+                  <div class="desc">
+                    自动调整弹性计算资源的管理服务
+                  </div>
+                </a>
+              </div>
+              <div class="menu-dropdown-down-item">
+                <a href="http://sc.chinaz.com/product/containerservice/">
+                  <h4>
+                    容器服务（公测中）
+                  </h4>
+                  <div class="desc">
+                    运行和管理 Docker容器
+                  </div>
+                </a>
+              </div>
+            </div>
+            <div class="menu-dropdown-bd">
+              <div class="menu-dropdown-down-item">
+                <h5 class="topic-hd">
+                  最新特性
+                </h5>
+                <ul class="desc">
+                  <li>
+                    <i class="list-style">
+                      ●
+                    </i>
+                    <a target="_blank" href="http://sc.chinaz.com/act/aliyun/gaoxiaoyunpan.html "
+                       class="desc-li-txt">
+                      ECS高效云盘上线
+                    </a>
+                  </li>
+                  <li>
+                    <i class="list-style">
+                      ●
+                    </i>
+                    <a target="_blank" href="http://sc.chinaz.com/act/aliyun/usaaz2.html "
+                       class="desc-li-txt">
+                      ECS美国硅谷第二可用区开放
+                    </a>
+                  </li>
+                  <li>
+                    <i class="list-style">
+                      ●
+                    </i>
+                    <a target="_blank" href="http://sc.chinaz.com/act/aliyun/singaporesale.html "
+                       class="desc-li-txt">
+                      ECS等10余款产品开放新加坡地域
+                    </a>
+                  </li>
+                  <li>
+                    <i class="list-style">
+                      ●
+                    </i>
+                    <a target="_blank" href="http://help.aliyun.com/knowledge_detail.htm?knowledgeId=6527514 "
+                       class="desc-li-txt">
+                      ECS镜像共享功能上线
+                    </a>
+                  </li>
+                  <li>
+                    <i class="list-style">
+                      ●
+                    </i>
+                    <a target="_blank" href="http://bbs.aliyun.com/read/241167.html " class="desc-li-txt">
+                      SSD云盘和IO优化型实例免费公测
+                    </a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <!-- 模板二： -->
+          <!-- 模板一： -->
+          <div style="display: ;background-image:url(./images/database-bg-x1.jpg);"
+               class="item-sub database-bg tpl1 product-bg-common common-header-clearfix"
+               sidebar-type="database">
+            <div class="menu-dropdown-bd menu-dropdown-split-line">
+              <div class="menu-dropdown-down-item">
+                <a href="http://sc.chinaz.com/product/rds/">
+                  <h4>
+                    云数据库 RDS
+                  </h4>
+                  <div class="desc">
+                    完全兼容MySQL，SQLServer，PostgreSQL协议的关系型数据库服务
+                  </div>
+                </a>
+              </div>
+              <div class="menu-dropdown-down-item">
+                <a href="http://sc.chinaz.com/product/mongodb/">
+                  <h4>
+                    云数据库MongoDB版（公测中）
+                  </h4>
+                  <div class="desc">
+                    三节点副本集保证高可用
+                  </div>
+                </a>
+              </div>
+              <div class="menu-dropdown-down-item">
+                <a href="http://sc.chinaz.com/product/ocs/">
+                  <h4>
+                    云数据库Memcache版
+                  </h4>
+                  <div class="desc">
+                    在线缓存服务，为热点数据的访问提供高速响应
+                  </div>
+                </a>
+              </div>
+              <div class="menu-dropdown-down-item">
+                <a href="http://sc.chinaz.com/product/kvstore">
+                  <h4>
+                    云数据库Redis版
+                  </h4>
+                  <div class="desc">
+                    兼容开源Redis协议的Key-Value类型在线存储服务
+                  </div>
+                </a>
+              </div>
+              <div class="menu-dropdown-down-item">
+                <a href="http://sc.chinaz.com/product/ads">
+                  <h4>
+                    分析型数据库
+                  </h4>
+                  <div class="desc">
+                    海量数据实时高并发在线分析服务
+                  </div>
+                </a>
+              </div>
+              <div class="menu-dropdown-down-item">
+                <a href="http://sc.chinaz.com/product/dts/">
+                  <h4>
+                    数据传输（公测中）
+                  </h4>
+                  <div class="desc">
+                    支持数据迁移及实时订阅同步的数据传输服务
+                  </div>
+                </a>
+              </div>
+              <div class="menu-dropdown-down-item">
+                <a href="http://sc.chinaz.com/product/dms/">
+                  <h4>
+                    数据管理（公测中）
+                  </h4>
+                  <div class="desc">
+                    比phpMyAdmin更强大，比Navicat更易用
+                  </div>
+                </a>
+              </div>
+            </div>
+            <div class="menu-dropdown-bd">
+              <div class="menu-dropdown-down-item">
+                <h5 class="topic-hd">
+                  最新特性
+                </h5>
+                <ul class="desc">
+                  <li>
+                    <i class="list-style">
+                      ●
+                    </i>
+                    <a target="_blank" href="http://sc.chinaz.com/act/aliyun/rds_pgsql/demo.html?utm_content=m_1189 "
+                       class="desc-li-txt">
+                      新引擎PostgreSQL上线
+                    </a>
+                  </li>
+                  <li>
+                    <i class="list-style">
+                      ●
+                    </i>
+                    <a target="_blank" href="http://sc.chinaz.com/product/ots/ " class="desc-li-txt">
+                      北京地域、深圳地域OTS上线
+                    </a>
+                  </li>
+                  <li>
+                    <i class="list-style">
+                      ●
+                    </i>
+                    <a target="_blank" href="http://sc.chinaz.com/?pos=1#/pub/drds/best-practice/best_data_import_export "
+                       class="desc-li-txt">
+                      引入模式&数据导入功能上线
+                    </a>
+                  </li>
+                  <li>
+                    <i class="list-style">
+                      ●
+                    </i>
+                    <a target="_blank" href="http://sc.chinaz.com/act/aliyun/rds/cloud_dba.html "
+                       class="desc-li-txt">
+                      RDS云数据库管家上线
+                    </a>
+                  </li>
+                  <li>
+                    <i class="list-style">
+                      ●
+                    </i>
+                    <a target="_blank" href="http://sc.chinaz.com/#/pub/drds/quick-start/console_use "
+                       class="desc-li-txt">
+                      DRDS实例化上线
+                    </a>
+                  </li>
+                  <li>
+                    <i class="list-style">
+                      ●
+                    </i>
+                    <a target="_blank" href="http://sc.chinaz.com/product/mongodb " class="desc-li-txt">
+                      MongoDB公测
+                    </a>
+                  </li>
+                  <li>
+                    <i class="list-style">
+                      ●
+                    </i>
+                    <a target="_blank" href="http://sc.chinaz.com/product/kvstore " class="desc-li-txt">
+                      Redis正式商用
+                    </a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <!-- 模板二： -->
+          <!-- 模板一： -->
+          <div style="display: ;background-image:url(./images/cdn-bg-x1.jpg);"
+               class="item-sub cdn-bg tpl1 product-bg-common common-header-clearfix" sidebar-type="cdn">
+            <div class="menu-dropdown-bd menu-dropdown-split-line">
+              <div class="menu-dropdown-down-item">
+                <a href="http://sc.chinaz.com/product/oss/">
+                  <h4>
+                    对象存储 OSS
+                  </h4>
+                  <div class="desc">
+                    海量、安全和高可靠的云存储服务
+                  </div>
+                </a>
+              </div>
+              <div class="menu-dropdown-down-item">
+                <a href="http://sc.chinaz.com/product/disk/">
+                  <h4>
+                    块存储
+                  </h4>
+                  <div class="desc">
+                    可弹性扩展、高性能、高可靠的块级随机存储
+                  </div>
+                </a>
+              </div>
+              <div class="menu-dropdown-down-item">
+                <a href="http://sc.chinaz.com/product/ots/">
+                  <h4>
+                    表格存储
+                  </h4>
+                  <div class="desc">
+                    NoSQL数据存储服务，提供海量结构化数据的存储和实时访问
+                  </div>
+                </a>
+              </div>
+              <div class="menu-dropdown-down-item">
+                <a href="http://sc.chinaz.com/product/oas/">
+                  <h4>
+                    归档存储
+                  </h4>
+                  <div class="desc">
+                    海量数据的长期归档、备份服务
+                  </div>
+                </a>
+              </div>
+              <div class="menu-dropdown-down-item">
+                <a href="http://sc.chinaz.com/product/mns">
+                  <h4>
+                    消息服务
+                  </h4>
+                  <div class="desc">
+                    可靠、海量、高并发的分布式消息通知服务
+                  </div>
+                </a>
+              </div>
+              <div class="menu-dropdown-down-item">
+                <a href="http://sc.chinaz.com/product/cdn/">
+                  <h4>
+                    CDN
+                  </h4>
+                  <div class="desc">
+                    跨运营商、跨地域全网覆盖的网络加速服务
+                  </div>
+                </a>
+              </div>
+            </div>
+            <div class="menu-dropdown-bd">
+              <div class="menu-dropdown-down-item">
+                <h5 class="topic-hd">
+                  最新特性
+                </h5>
+                <ul class="desc">
+                  <li>
+                    <i class="list-style">
+                      ●
+                    </i>
+                    <a target="_blank" href="http://sc.chinaz.com/ntms/actstorages.html "
+                       class="desc-li-txt">
+                      对象存储OSS预售资源包上线
+                    </a>
+                  </li>
+                  <li>
+                    <i class="list-style">
+                      ●
+                    </i>
+                    <a target="_blank" href="http://sc.chinaz.com/?pos=1#/pub/oss/api-reference/access-control&amp;granting-permissions "
+                       class="desc-li-txt">
+                      临时访问凭证STS上线
+                    </a>
+                  </li>
+                  <li>
+                    <i class="list-style">
+                      ●
+                    </i>
+                    <a target="_blank" href="http://sc.chinaz.com/?pos=2#/pub/oss/product-documentation/function&amp;lifecycle "
+                       class="desc-li-txt">
+                      生命周期管理功能上线
+                    </a>
+                  </li>
+                  <li>
+                    <i class="list-style">
+                      ●
+                    </i>
+                    <a target="_blank" href="http://sc.chinaz.com/?#/pub/cdn/getting-started/monitor "
+                       class="desc-li-txt">
+                      新增流量监控和用户访问分析功能
+                    </a>
+                  </li>
+                  <li>
+                    <i class="list-style">
+                      ●
+                    </i>
+                    <a target="_blank" href="http://sc.chinaz.com/?#/pub/cdn/getting-started/other "
+                       class="desc-li-txt">
+                      新增用户网络诊断工具
+                    </a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </li>
+
+
+</ul>
+
+<ul class="list-group">
+  <li class="list-group-item">Default List Group item </li>
+  <li class="list-group-item"><span class="badge">New</span>List Group item 1 with badge</li>
+</ul>
 </body>
 </html>

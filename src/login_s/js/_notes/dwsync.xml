@@ -1,8 +1,21 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <dwsync>
-<file name="jquery2.2.2.min.js" server="202.197.190.99:56789//" local="131593231273362686" remote="131704839600000000" Dst="0" />
-<file name="bootstrap.min.js" server="202.197.190.99:56789//" local="131693615025100517" remote="131704839600000000" Dst="0" />
-<file name="angular-cookies.js" server="202.197.190.99:56789//" local="131693533699600000" remote="131704839600000000" Dst="0" />
-<file name="angular.js" server="202.197.190.99:56789//" local="131693533699977381" remote="131704839600000000" Dst="0" />
-<file name="login_v.js" server="202.197.190.99:56789//" local="131707424396716679" remote="131707425000000000" Dst="0" />
+<file name="jquery2.2.2.min.js" server="202.197.190.99:56789//" local="131593231273362686" remote="131720306400000000" Dst="0" />
+<file name="bootstrap.min.js" server="202.197.190.99:56789//" local="131693615025100517" remote="131720306400000000" Dst="0" />
+<file name="angular-cookies.js" server="202.197.190.99:56789//" local="131693533699600000" remote="131720306400000000" Dst="0" />
+<file name="angular.js" server="202.197.190.99:56789//" local="131693533699977381" remote="131720306400000000" Dst="0" />
+<file name="login_v.js" server="202.197.190.99:56789//" local="131719641004349732" remote="131720306400000000" Dst="0" />
+<file name="bootstrap.js" server="202.197.190.99:56789//" local="131693615002797745" remote="131720307000000000" Dst="0" />
+<file name="login.js" server="202.197.190.99:56789//" local="131593231370567410" remote="131720307000000000" Dst="0" />
+<file name="common.js" server="202.197.190.99:56789//" local="131593231168069926" remote="131720307000000000" Dst="0" />
+<file name="core.js" server="202.197.190.99:56789//" local="131261889850000000" remote="131716199400000000" Dst="0" />
+<file name="login_v.js_bak" server="202.197.190.99:56789//" local="131708467329450000" remote="131716199400000000" Dst="0" />
+<file name="login_v1.js" server="202.197.190.99:56789//" local="131705911273040000" remote="131716199400000000" Dst="0" />
+<file name="md5.js" server="202.197.190.99:56789//" local="131261889850000000" remote="131716199400000000" Dst="0" />
+<file name="ngStorage.js" server="202.197.190.99:56789//" local="131705567715307095" remote="131716199400000000" Dst="0" />
+<file name="npm.js" server="202.197.190.99:56789//" local="131693615002857920" remote="131716199400000000" Dst="0" />
+<file name="regUser.js" server="202.197.190.99:56789//" local="131705998576687736" remote="131720307000000000" Dst="0" />
+<file name="session_t.js" server="202.197.190.99:56789//" local="131715613107604428" remote="131716199400000000" Dst="0" />
+<file name="session_t2.js" server="202.197.190.99:56789//" local="131708584315747907" remote="131716199400000000" Dst="0" />
+<file name="sha256.js" server="202.197.190.99:56789//" local="131261889850000000" remote="131716199400000000" Dst="0" />
 </dwsync>

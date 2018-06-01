@@ -35,6 +35,16 @@ object WebModule1: TWebModule1
       Name = 'WebActionItem6'
       PathInfo = '/appreg'
       OnAction = appreg
+    end
+    item
+      Name = 'WebActionItem7'
+      PathInfo = '/getRegUsers'
+      OnAction = getRegUsers
+    end
+    item
+      Name = 'WebActionItem8'
+      PathInfo = '/deluser'
+      OnAction = deluser
     end>
   Height = 230
   Width = 415
